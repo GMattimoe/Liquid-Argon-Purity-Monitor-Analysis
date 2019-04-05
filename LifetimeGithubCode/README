@@ -1,0 +1,35 @@
+Liquid argon lifetime project
+
+These programs are written in c++ and ROOT.
+It is necessary to have c++ and ROOT installed and the FFTW Wrapper in the 
+path. Voltage values were recorded from the cathode and anode of a liquid argon
+purity monitor. These voltage values formed a "waveform" and 1000 of these 
+waveforms were recorded to extract the lifetime. The "lifetime" is the lifetime
+of electrons in liquid argon, a measure of how long electrons can travel in the 
+liquid argon without getting absorbed by impurities. This is effectively
+a measure of impurity of the liquid argon.
+
+allMethodsPlotting.cpp
+is used to explore the different methods of averaging and smoothing of the
+waveforms and removing noise. It is messy and long. I am aiming to change 
+the program to function in a more object orientated way.
+
+lifetimeCalc.cpp
+is used to calculate the lifetime of the electrons in the liquid argon using a
+fourier transform and removing all frequencies above a specified "cut" value
+
+newLifetimeCalc.cpp
+is an expansion on lifetimeCalc.cpp that uses a noise sample is to locate 
+spikes in frequencies that are caused by noise. These frequency values are 
+removed and the signal frequency spectrum of the waveform and the spectrum 
+is fitted with a polynomial spline.
+
+spectrumAnalysis.cpp
+was used to analyse the spectrum to develope newLifetimeCalc.cpp
+The signal and noise spectrum is plotted and analysed
+
+multiBatchMultiLifetime.cpp
+is used to see how averaging the waveforms in different sized batches effects
+the lifetime values. The program iterates over the 1000 graphs grouping the 
+waveforms in different sized batches and plotting the corresponding lifetime 
+values.
